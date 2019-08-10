@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Jul 2019 pada 06.29
--- Versi server: 10.1.34-MariaDB
--- Versi PHP: 7.2.7
+-- Generation Time: Aug 10, 2019 at 02:07 AM
+-- Server version: 10.1.40-MariaDB
+-- PHP Version: 7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,28 +25,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `uname` varchar(30) NOT NULL,
   `pass` varchar(70) NOT NULL,
-  `foto` text NOT NULL
+  `foto` text NOT NULL,
+  `level` enum('admin','karyawan') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `admin`
+-- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `uname`, `pass`, `foto`) VALUES
-(8, 'malasngoding', '7815696ecbf1c96e6894b779456d330e', '49729469_273564059978189_1211012200701661041_n.jpg'),
-(9, 'admin', '0192023a7bbd73250516f069df18b500', 'XVnx.gif');
+INSERT INTO `admin` (`id`, `uname`, `pass`, `foto`, `level`) VALUES
+(9, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'XVnx.gif', 'admin'),
+(10, 'karyawan1', '8962cdff20ba8d7428cf77c4f1ed6d05', '', 'karyawan'),
+(12, 'karyawan2', 'a3dcb4d229de6fde0db5686dee47145d', '', 'karyawan');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `barang`
+-- Table structure for table `barang`
 --
 
 CREATE TABLE `barang` (
@@ -62,7 +64,7 @@ CREATE TABLE `barang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `barang`
+-- Dumping data for table `barang`
 --
 
 INSERT INTO `barang` (`id`, `nama`, `jenis`, `suplier`, `modal`, `harga`, `jumlah`, `sisa`, `foto`) VALUES
@@ -72,15 +74,14 @@ INSERT INTO `barang` (`id`, `nama`, `jenis`, `suplier`, `modal`, `harga`, `jumla
 (39, 'oli', 'minyak', 'pabrik oli', 30000, 40000, 90, 100, ''),
 (40, 'jeans', 'celana', 'a', 100000, 150000, 50, 50, ''),
 (41, 'dffds', 'dsfsdf', 'dfsdfs', 100000, 150000, 12, 50, ''),
-(44, 'dfsd', 'ddsf', 'dfsdf', 12, 12, 12, 12, 'ssdsds'),
 (45, 'cxz', 'sdsdsd', 'sdsdsd', 100000, 150000, 15, 15, ''),
-(47, 'dfsdfdsdfsdfdsf', 'dfdsfdsfsdf', 'sdfdsfdsf', 100000, 150000, 9, 9, '1.PNG'),
-(48, 'sdsdsad', 'asdasdsa', 'asdasdas', 100000, 150000, 5, 1, 'Capture.PNG');
+(47, 'dfsdfdsdfsdfdsf', 'dfdsfdsfsdf', 'sdfdsfdsf', 100000, 150000, 8, 9, '1.PNG'),
+(48, 'sdsdsad', 'asdasdsa', 'asdasdas', 100000, 150000, -5, 1, 'Capture.PNG');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `barang_laku`
+-- Table structure for table `barang_laku`
 --
 
 CREATE TABLE `barang_laku` (
@@ -94,7 +95,7 @@ CREATE TABLE `barang_laku` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `barang_laku`
+-- Dumping data for table `barang_laku`
 --
 
 INSERT INTO `barang_laku` (`id`, `tanggal`, `nama`, `jumlah`, `harga`, `total_harga`, `laba`) VALUES
@@ -105,12 +106,14 @@ INSERT INTO `barang_laku` (`id`, `tanggal`, `nama`, `jumlah`, `harga`, `total_ha
 (81, '2019-02-06', 'Jilbab', 10, 5640, 56400, 6400),
 (82, '2019-07-23', 'oli', 10, 40000, 400000, 100000),
 (86, '2019-07-23', 'Kerudung B', 2, 23500, 47000, 7000),
-(87, '2019-07-18', 'Kerudung B', 9, 23500, 211500, 31500);
+(87, '2019-07-18', 'Kerudung B', 9, 23500, 211500, 31500),
+(88, '0000-00-00', 'sdsdsad', 10, 150000, 1500000, 500000),
+(89, '2019-08-10', 'dfsdfdsdfsdfdsf', 1, 150000, 150000, 50000);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengeluaran`
+-- Table structure for table `pengeluaran`
 --
 
 CREATE TABLE `pengeluaran` (
@@ -122,7 +125,7 @@ CREATE TABLE `pengeluaran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pengeluaran`
+-- Dumping data for table `pengeluaran`
 --
 
 INSERT INTO `pengeluaran` (`id`, `tanggal`, `keperluan`, `nama`, `jumlah`) VALUES
@@ -131,7 +134,7 @@ INSERT INTO `pengeluaran` (`id`, `tanggal`, `keperluan`, `nama`, `jumlah`) VALUE
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `reseller`
+-- Table structure for table `reseller`
 --
 
 CREATE TABLE `reseller` (
@@ -144,7 +147,7 @@ CREATE TABLE `reseller` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `reseller`
+-- Dumping data for table `reseller`
 --
 
 INSERT INTO `reseller` (`id_reseller`, `username`, `password`, `no_hp`, `nama_reseller`, `foto`) VALUES
@@ -160,68 +163,68 @@ INSERT INTO `reseller` (`id_reseller`, `username`, `password`, `no_hp`, `nama_re
 --
 
 --
--- Indeks untuk tabel `admin`
+-- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `barang`
+-- Indexes for table `barang`
 --
 ALTER TABLE `barang`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `barang_laku`
+-- Indexes for table `barang_laku`
 --
 ALTER TABLE `barang_laku`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `pengeluaran`
+-- Indexes for table `pengeluaran`
 --
 ALTER TABLE `pengeluaran`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `reseller`
+-- Indexes for table `reseller`
 --
 ALTER TABLE `reseller`
   ADD PRIMARY KEY (`id_reseller`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `admin`
+-- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT untuk tabel `barang`
+-- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
--- AUTO_INCREMENT untuk tabel `barang_laku`
+-- AUTO_INCREMENT for table `barang_laku`
 --
 ALTER TABLE `barang_laku`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
--- AUTO_INCREMENT untuk tabel `pengeluaran`
+-- AUTO_INCREMENT for table `pengeluaran`
 --
 ALTER TABLE `pengeluaran`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `reseller`
+-- AUTO_INCREMENT for table `reseller`
 --
 ALTER TABLE `reseller`
-  MODIFY `id_reseller` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_reseller` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
