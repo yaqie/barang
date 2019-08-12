@@ -58,29 +58,14 @@ $a = mysqli_query($conn,"select * from barang_laku");
 
                     $fo=mysqli_fetch_array(mysqli_query($conn,"select * from admin where id='$id'"));
                   ?>
-                  <form action="ganti_pass_act.php?aksi=kirimotp" method="post">
+                  <form action="ganti_pass_act.php?aksi=change" method="post">
                     <div class="form-group">
-                      <input name="nohp" type="hidden" value="<?php echo $fo['nohp']; ?>">
-                      <input name="user" type="hidden" value="<?php echo $_SESSION['uname']; ?>">
                       <input name="id" type="hidden" value="<?php echo $_SESSION['id']; ?>">
-                      <input name="jenis" type="hidden" value="<?php echo $_SESSION['jenis']; ?>">
-                    </div>
-                    <div class="form-group">
-                      <label>Password Lama</label>
-                      <input name="lama" type="password" class="form-control" placeholder="Password Lama ..">
-                    </div>
-                    <div class="form-group">
-                      <label>Password Baru</label>
-                      <input name="baru" type="password" class="form-control" placeholder="Password Baru ..">
-                    </div>
-                    <div class="form-group">
-                      <label>Ulangi Password</label>
-                      <input name="ulang" type="password" class="form-control" placeholder="Ulangi Password ..">
+                      <input name="otp" type="text" class="form-control" placeholder="Masukkan kode OTP yang telah kami kirim ke nomor anda">
                     </div>	
                     <div class="form-group">
                       <label></label>
-                      <input type="submit" class="btn btn-info" value="Simpan">
-                      <input type="reset" class="btn btn-danger" value="reset">
+                      <input type="submit" class="btn btn-info" value="Validasi OTP">
                     </div>																	
                   </form>
                 </div>

@@ -10,13 +10,13 @@ $a = mysqli_query($conn,"select * from barang_laku");
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Ganti Foto
+        Profil
         <!-- <small>Halaman Utama</small> -->
       </h1>
       <ol class="breadcrumb">
         <li><a href="dashboard"><i class="fa fa-dashboard"></i> Home
         </a></li>
-        <li class="active">Ganti Foto</li>
+        <li class="active">Profil</li>
       </ol>
     </section>
 
@@ -73,8 +73,44 @@ $a = mysqli_query($conn,"select * from barang_laku");
                 
                 </div>
                 <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
+            </div>
+            <!-- /.box -->
+
+
+
+
+
+            <div class="box">
+                <!-- /.box-header -->
+                <div class="box-body">
+                   <div class="col-md-5 col-md-offset-3">
+                      <?php 
+                        $id=$_SESSION['id'];
+
+                        $fo=mysqli_fetch_array(mysqli_query($conn,"select * from admin where id='$id'"));
+                      ?>
+                      <form action="ganti_no_act.php" method="post">
+                        <div class="form-group">
+                          <input name="user" type="hidden" value="<?php echo $_SESSION['uname']; ?>">
+                          <input type="hidden" value="<?= $_SESSION['id']; ?>" name="id"/>
+                          <input type="hidden" value="<?= $_SESSION['jenis']; ?>" name="jenis"/>
+                        </div>
+                        <div class="form-group">
+                          <label>Nomor Handphone</label>
+                          <input name="nohp" type="text" class="form-control" value="<?= $fo['nohp']; ?>">
+                        </div>		
+                        <div class="form-group">
+                          <label></label>
+                          <input type="submit" class="btn btn-info" value="Ganti">
+                          <input type="reset" class="btn btn-danger" value="reset">
+                        </div>																	
+                      </form>
+                    </div>
+                
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
         </div>
         <!-- /.col -->
       </div>

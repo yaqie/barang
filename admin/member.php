@@ -1,10 +1,10 @@
  <?php  
 include 'header.php'; 
-function mysql_result($res, $row, $field=0) { 
-    $res->data_seek($row); 
-    $datarow = $res->fetch_array(); 
-    return $datarow[$field]; 
-}
+// function mysql_result($res, $row, $field=0) { 
+//     $res->data_seek($row); 
+//     $datarow = $res->fetch_array(); 
+//     return $datarow[$field]; 
+// }
 
 
 ?>
@@ -73,8 +73,8 @@ function mysql_result($res, $row, $field=0) {
                 ?>
 
                 <?php 
-                    $jumlah_record=mysqli_query($conn,"SELECT COUNT(*) from reseller");
-                    $jum=mysql_result($jumlah_record, 0);
+                    $jumlah_record=mysqli_query($conn,"SELECT * from member");
+                    $jum=mysqli_num_rows($jumlah_record);
                    
                     ?>
 
@@ -142,7 +142,7 @@ function mysql_result($res, $row, $field=0) {
                <tbody>
                 <?php 
                     $i = 0;
-                  $qry = mysqli_query($conn,"SELECT * from reseller ORDER by id_reseller DESC");
+                  $qry = mysqli_query($conn,"SELECT * from member ORDER by id_reseller DESC");
                    while($r = mysqli_fetch_array($qry)){
                       $i++;
 

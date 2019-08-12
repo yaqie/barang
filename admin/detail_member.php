@@ -42,17 +42,13 @@ $a = mysqli_query($conn,"select * from barang_laku");
                             $id_res=mysqli_real_escape_string($conn,$_GET['id']);
 
 
-                            $det=mysqli_query($conn,"select * from reseller where id_reseller='$id_res'") or die(mysql_error());
+                            $det=mysqli_query($conn,"select * from member where id_reseller='$id_res'") or die(mysql_error());
                             while($d=mysqli_fetch_array($det)){
                                 ?>					
                                 <table class="table">
                                     <tr>
                                         <td>Nama Member</td>
                                         <td><?php echo $d['nama_reseller'] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Username</td>
-                                        <td><?php echo $d['username'] ?></td>
                                     </tr>
                                     <tr>
                                         <td>Nomer Hp</td>

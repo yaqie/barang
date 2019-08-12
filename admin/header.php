@@ -135,7 +135,6 @@ include 'config.php';
 				$jenis = $_SESSION['jenis'];
 
 				$fo=mysqli_fetch_array(mysqli_query($conn,"select foto from admin where id='$id'"));
-				$fo2=mysqli_fetch_array(mysqli_query($conn,"select foto from reseller where id_reseller='$id'"));
 			?>
 
               <img src="foto/<?php if($jenis == "admin"){ echo $fo['foto']; } else { echo $fo2['foto']; }  ?>" class="user-image" alt="User Image">
@@ -222,7 +221,7 @@ include 'config.php';
         <?php if ($_SESSION['level'] == 'admin'){ ?>
           <li><a href="karyawan.php"> <i class="fa fa-users"></i><span>Karyawan</span></a></li>
         <?php } ?>
-        <li><a href="ganti_foto.php"> <i class="fa fa-image"></i><span>Ganti Foto</span></a></li>
+        <li><a href="profil.php"> <i class="fa fa-user"></i><span>Profil</span></a></li>
         <li><a href="ganti_pass.php"> <i class="fa fa-lock"></i><span>Ganti Password</span></a></li>
         <li><a href="logout.php"> <i class="fa fa-sign-out"></i><span>Logout</span></a></li>
 
