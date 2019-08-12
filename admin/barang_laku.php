@@ -64,9 +64,12 @@ function mysql_result($res, $row, $field=0) {
 
           <div class="box">
             <div class="box-header">
-                  <button type="button" class="btn btn-info btn col-md-2" data-toggle="modal" data-target="#myModal">
+              <a href="tambah-transaksi.php">
+                
+                  <button type="button" class="btn btn-info btn col-md-2">
                     + Entry
                   </button>
+              </a>
                 <form action="" method="get">
               <div class="input-group col-md-5 col-md-offset-7">
                 
