@@ -122,12 +122,32 @@ function mysql_result($res, $row, $field=0) {
                             <input name="nama" type="text" class="form-control" placeholder="Nama Barang ..">
                         </div>
                         <div class="form-group">
-                            <label>Jenis</label>
-                            <input name="jenis" type="text" class="form-control" placeholder="Jenis Barang ..">
+                          <label>Jenis Barang</label>
+                          <select class="form-control select2" style="width: 100%;" name="jenis">
+                            <option>Silahkan Pilih</option>
+                           <?php 
+                            $qry = mysqli_query($conn, "SELECT * from jenis_barang");
+                            while ($r=mysqli_fetch_assoc($qry)) {
+                              ?>
+                             <option value="<?= $r['id_jenis'] ?>"><?= $r['nama_jenis']?></option>
+                             <?php
+                            }
+                          ?>
+                          </select>
                         </div>
                         <div class="form-group">
-                            <label>Suplier</label>
-                            <input name="suplier" type="text" class="form-control" placeholder="Suplier ..">
+                          <label>Supplier</label>
+                          <select class="form-control select2" style="width: 100%;" name="suplier">
+                            <option>Silahkan Pilih</option>
+                           <?php 
+                            $qry = mysqli_query($conn, "SELECT * from supplier");
+                            while ($r=mysqli_fetch_assoc($qry)) {
+                              ?>
+                             <option value="<?= $r['id_supplier'] ?>"><?= $r['nama_supplier']?></option>
+                             <?php
+                            }
+                          ?>
+                          </select>
                         </div>
                         <div class="form-group">
                             <label>Harga Modal</label>

@@ -6,8 +6,10 @@ $nama=explode("|", $_POST['nama']);
 $harga=$_POST['harga'];
 $jumlah=$_POST['jumlah'];
 $totalHarga=$_POST['total'];
+$jumlahUang=$_POST['jumlahUang'];
+$kembalian=$_POST['kembalian'];
 
-$tanggal 		= date("Y-m-d");
+$tanggal = date("Y-m-d");
 
 $dt=mysqli_query($conn,"select * from barang where id='$id'");
 $data=mysqli_fetch_array($dt);
@@ -30,10 +32,11 @@ if ($data['jumlah'] < $jumlah){
 	$total_harga=$totalHarga;
 	$sql = mysqli_query($conn,"insert into barang_laku values('','$tanggal','$nama[0]','$jumlah','$harga','$total_harga','$labaa')");
 	if ($sql) {
-		$_SESSION['sukses'] = "Data Barang Berhasil Ditambahkan";
+		$_SESSION['sukses'] = "Data Transaksi Berhasil Ditambahkan";
+		// header("location:det-transaksi.php");
 		header("location:barang_laku.php");
 	} else {
-		$_SESSION['info_gagal'] = "Data Barang Gagal Ditambahkan";
+		$_SESSION['info_gagal'] = "Data Transaksi Gagal Ditambahkan";
 		header("location:barang_laku.php");
 	}
 }

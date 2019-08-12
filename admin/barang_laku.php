@@ -64,9 +64,12 @@ function mysql_result($res, $row, $field=0) {
 
           <div class="box">
             <div class="box-header">
-                  <button type="button" class="btn btn-info btn col-md-2" data-toggle="modal" data-target="#myModal">
+              <a href="tambah-transaksi.php">
+                
+                  <button type="button" class="btn btn-info btn col-md-2">
                     + Entry
                   </button>
+              </a>
                 <form action="" method="get">
               <div class="input-group col-md-5 col-md-offset-7">
                 
@@ -118,6 +121,7 @@ function mysql_result($res, $row, $field=0) {
                   <th>Harga Terjual /pc</th>
                   <th>Total Harga</th>
                   <th>Jumlah</th>
+                  <th>Laba</th>
                   <?php if ($_SESSION['level'] == 'admin'){ ?>			
                   <th>Opsi</th>
                   <?php } ?>
@@ -143,6 +147,7 @@ function mysql_result($res, $row, $field=0) {
                     <td>Rp.<?php echo number_format($b['harga']) ?>,-</td>
                     <td>Rp.<?php echo number_format($b['total_harga']) ?>,-</td>
                     <td><?php echo $b['jumlah'] ?></td>		
+                    <td>Rp.<?php echo number_format($b['laba']) ?>,-</td>   
                     <?php if ($_SESSION['level'] == 'admin'){ ?>	
                     <td>		
                       <a href="edit_laku.php?id=<?php echo $b['id']; ?>" class="btn btn-warning">Edit</a>
@@ -165,14 +170,14 @@ function mysql_result($res, $row, $field=0) {
 
           <div class="box">
            <?php 
-            if(isset($_GET['tanggal'])){
-              $tanggal=mysqli_real_escape_string($conn,$_GET['tanggal']);
-              $x=mysqli_query($conn,"select sum(total_harga) as total from barang_laku where tanggal='$tanggal'");	
-              $xx=mysqli_fetch_array($x);			
-              $d=mysqli_query($conn,"select sum(laba) as total from barang_laku where tanggal='$tanggal'");	
-              $dd=mysqli_fetch_array($d);		
+            // if(isset($_GET['tanggal'])){
+            //   $tanggal=mysqli_real_escape_string($conn,$_GET['tanggal']);
+            //   $x=mysqli_query($conn,"select sum(total_harga) as total from barang_laku where tanggal='$tanggal'");	
+            //   $xx=mysqli_fetch_array($x);			
+            //   $d=mysqli_query($conn,"select sum(laba) as total from barang_laku where tanggal='$tanggal'");	
+            //   $dd=mysqli_fetch_array($d);		
               // echo "<td><b> Rp.". number_format($xx['total']).",-</b></td>";
-            }
+            // }
 
             ?>
             <!-- /.box-header -->
@@ -183,11 +188,30 @@ function mysql_result($res, $row, $field=0) {
                       $tanggal=mysqli_real_escape_string($conn,$_GET['tanggal']);
                       $x=mysqli_query($conn,"select sum(total_harga) as total from barang_laku where tanggal='$tanggal'");	
                       $xx=mysqli_fetch_array($x);		
-                      echo "<b> Rp.". number_format($xx['total']).",-</b>";;
+                      echo "<b> Rp.". number_format($xx['total']).",-</b>";
+                    }else{
+                      $z=mysqli_query($conn,"select sum(total_harga) as total from barang_laku");  
+                      $zz=mysqli_fetch_array($z);   
+                      echo "<b> Rp.". number_format($zz['total']).",-</b>";
                     }
 
                     ?>
                     <br>
+                     Total Laba :  
+                  <?php 
+                    if(isset($_GET['tanggal'])){
+                      $tanggal=mysqli_real_escape_string($conn,$_GET['tanggal']);
+                     $d=mysqli_query($conn,"select sum(laba) as total from barang_laku where tanggal='$tanggal'");  
+                      $dd=mysqli_fetch_array($d);    
+                      echo "<b> Rp.". number_format($dd['total']).",-</b>";
+                    }
+                    else{
+                       $r=mysqli_query($conn,"select sum(laba) as total from barang_laku");  
+                      $rr=mysqli_fetch_array($r);    
+                      echo "<b> Rp.". number_format($rr['total']).",-</b>";
+                    }
+
+                    ?>
             </div>
             <!-- /.box-body -->
           </div>

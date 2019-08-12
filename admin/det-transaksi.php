@@ -10,14 +10,14 @@ $a = mysqli_query($conn,"select * from barang_laku");
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Detail Barang
+        Detail Transaksi
         <!-- <small>Halaman Utama</small> -->
       </h1>
       <ol class="breadcrumb">
         <li><a href="dashboard"><i class="fa fa-dashboard"></i> Home
         </a></li>
-        <li class="active">Data Barang</li>
-        <li class="active">Detail Barang</li>
+        <li class="active">Entry Penjualan</li>
+        <li class="active">Detail Transaksi</li>
       </ol>
     </section>
 
@@ -42,7 +42,7 @@ $a = mysqli_query($conn,"select * from barang_laku");
                         $id_brg=mysqli_real_escape_string($conn,$_GET['id']);
 
 
-                        $det=mysqli_query($conn,"SELECT barang.*,supplier.nama_supplier,jenis_barang.nama_jenis from barang INNER JOIN supplier on barang.id_supplier=supplier.id_supplier INNER JOIN jenis_barang on barang.id_jenis=jenis_barang.id_jenis WHERE barang.id='$id_brg'")or die(mysqli_error());
+                        $det=mysqli_query($conn,"SELECT * from barang where id='$id_brg'")or die(mysql_error());
                         while($d=mysqli_fetch_array($det)){
                             ?>					
                             <table class="table">
@@ -65,11 +65,11 @@ $a = mysqli_query($conn,"select * from barang_laku");
                                 </tr>
                                 <tr>
                                     <td>Jenis Barang</td>
-                                    <td><?php echo $d['nama_jenis'] ?></td>
+                                    <td><?php echo $d['jenis'] ?></td>
                                 </tr>
                                 <tr>
                                     <td>Suplier</td>
-                                    <td><?php echo $d['nama_supplier'] ?></td>
+                                    <td><?php echo $d['suplier'] ?></td>
                                 </tr>
                                 <tr>
                                     <td>Modal</td>
