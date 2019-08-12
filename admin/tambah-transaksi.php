@@ -41,10 +41,11 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                    <form action="barang_laku_act.php" method="post">
-                      <!-- <div class="form-group">
+                      <div class="form-group">
                         <label>Tanggal</label>
                        <input type="text" class="form-control" value="<?= date("Y-m-d"); ?>" name="tgl" autocomplete="off" readonly>
-                      </div>   -->
+                      </div>  
+
                       <div class="form-group">
                         <label>Jenis Pembeli</label>
                         <select id="jenisPembeli" onchange="setHarga2();" class="form-control" name="jenis">
@@ -83,8 +84,22 @@
                         <label>Total Harga</label>
                         <input oninput="setHarga2()" id="totalHarga" name="total" type="number" class="form-control" placeholder="Total harga" autocomplete="off">
                       </div>  
+                      <div class="form-group">
+                        <label>Jumlah Uang</label>
+                        <input oninput="setHarga2()" id="jumlahUang" name="jumlahUang" type="number" class="form-control" placeholder="Jumlah Uang Pembeli" autocomplete="off">
+                      </div> 
+                      <div class="form-group">
+                        <label>Kembalian</label>
+                        <input oninput="setHarga2()" id="kembalian" name="kembalian" type="number" class="form-control" placeholder="Kembalian" autocomplete="off" required>
+                      </div> 
+                      <div class="form-group">
+                            <input id="hidden" name="id" type="hidden" value="">
+                            <input type="submit" class="btn btn-primary width-125" value="Simpan">
+                            <input type="reset" class="btn btn-danger width-125" value="Reset">                       
+                            <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button> -->
+                       </div>
                     
-                
+                </form>
                 </div>
                 <!-- /.box-body -->
           </div>
@@ -138,6 +153,10 @@
             hidden.value = idBarang;
             var jumlah = Number(document.getElementById("jumlahBarang").value);
             var totalHarga = document.getElementById("totalHarga");
+            var jumlahUang = document.getElementById("jumlahUang");
+            var kembali = document.getElementById("kembalian");
+
+
             // var diskon6 = harga - (harga*6/100);
             // var diskon10 = harga - (harga*10/100)
 

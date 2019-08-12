@@ -20,7 +20,7 @@ $foto=$_FILES['foto']['name'];
 // }
 
 if ($foto == '') {
-   mysqli_query($conn,"update barang set nama='$nama', jenis='$jenis', suplier='$suplier', modal='$modal', harga='$harga', jumlah='$jumlah' where id='$id'");
+   mysqli_query($conn,"update barang set nama='$nama', id_jenis='$jenis', id_supplier='$suplier', modal='$modal', harga='$harga', jumlah='$jumlah' where id='$id'");
 		 $_SESSION['sukses'] = "Data Barang Berhasil Diedit";
 		header("location:barang.php");
 } else {
@@ -29,12 +29,12 @@ if ($foto == '') {
 	if(file_exists("foto_barang/".$us['foto'])){
 		unlink("foto_barang/".$us['foto']);
 		move_uploaded_file($_FILES['foto']['tmp_name'], "foto_barang/".$_FILES['foto']['name']);
-		mysqli_query($conn,"update barang set nama='$nama', jenis='$jenis', suplier='$suplier', modal='$modal', harga='$harga', jumlah='$jumlah',foto='$foto' where id='$id'");
+		mysqli_query($conn,"update barang set nama='$nama', id_jenis='$jenis', id_supplier='$suplier', modal='$modal', harga='$harga', jumlah='$jumlah',foto='$foto' where id='$id'");
 		 $_SESSION['sukses'] = "Data Barang Berhasil Diedit";
 		header("location:barang.php");
 	}else{
 		move_uploaded_file($_FILES['foto']['tmp_name'], "foto_barang/".$_FILES['foto']['name']);
-		mysqli_query($conn,"update barang set nama='$nama', jenis='$jenis', suplier='$suplier', modal='$modal', harga='$harga', jumlah='$jumlah',foto='$foto' where id='$id''");
+		mysqli_query($conn,"update barang set nama='$nama', id_jenis='$jenis', id_supplier='$suplier', modal='$modal', harga='$harga', jumlah='$jumlah',foto='$foto' where id='$id''");
 		$_SESSION['sukses'] = "Data Barang Berhasil Diedit";
 		header("location:barang.php");
     }

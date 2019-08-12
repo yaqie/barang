@@ -103,16 +103,12 @@
                 document.getElementById("textHargaJual").innerHTML  = "Harga Jual / unit (Diskon 10%)";
                 hargaBarang.value = diskon6;
                 totalHarga.value = hargaBarang.value * jumlah;
-            } else if (jenis == "reseller"){
-                // document.getElementById("textHargaJual").innerHTML  = "Harga Jual / unit (beli 10pcs diskon 10%)";
-                // if(jumlah < 10){
-                //     hargaBarang.value = harga;
-                //     totalHarga.value = hargaBarang.value * jumlah;
-                // } else {
-                //     hargaBarang.value = diskon10;
-                //     totalHarga.value = hargaBarang.value * jumlah;
-                // }
-            }
+            } 
+
+            var jumlahUang = document.getElementById("jumlahUang");
+            var kembalian = document.getElementById("kembalian");
+
+            kembalian.value = jumlahUang.value - totalHarga.value;
 
              
         }

@@ -55,11 +55,37 @@ $a = mysqli_query($conn,"select * from barang_laku");
                                 </tr>
                                 <tr>
                                     <td>Jenis</td>
-                                    <td><input type="text" class="form-control" name="jenis" value="<?php echo $d['jenis'] ?>"></td>
+                                    <td>
+                                        <select class="form-control select2" style="width: 100%;" name="jenis">
+                                       <?php 
+                                        $qry = mysqli_query($conn, "SELECT * from jenis_barang");
+                                        while ($r=mysqli_fetch_assoc($qry)) {
+                                          ?>
+                                         <option <?php if ($d['id_jenis'] == $r['id_jenis']) {
+                                             echo "selected";
+                                         } ?> value="<?= $r['id_jenis'] ?>"><?= $r['nama_jenis']?></option>
+                                         <?php
+                                        }
+                                      ?>
+                                      </select>
+                                  </td>
                                 </tr>
                                 <tr>
                                     <td>Suplier</td>
-                                    <td><input type="text" class="form-control" name="suplier" value="<?php echo $d['suplier'] ?>"></td>
+                                    <td>
+                                         <select class="form-control select2" style="width: 100%;" name="suplier">
+                                       <?php 
+                                        $qry = mysqli_query($conn, "SELECT * from supplier");
+                                        while ($r=mysqli_fetch_assoc($qry)) {
+                                          ?>
+                                         <option <?php if ($d['id_supplier'] == $r['id_supplier']) {
+                                             echo "selected";
+                                         } ?> value="<?= $r['id_supplier'] ?>"><?= $r['nama_supplier']?></option>
+                                         <?php
+                                        }
+                                      ?>
+                                      </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Modal</td>
