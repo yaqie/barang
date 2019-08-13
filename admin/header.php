@@ -235,19 +235,7 @@ include 'config.php';
         <?php } ?>
         <?php if ($_SESSION['level'] == 'admin'){ ?>
           <li><a href="karyawan.php"> <i class="fa fa-users"></i><span>Karyawan</span></a></li>
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-laptop"></i> <span>Master Data</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="jenis-barang.php"><i class="fa fa-circle-o"></i> Jenis barang</a></li>
-                <li><a href="data-supplier.php"><i class="fa fa-circle-o"></i> Data Supplier</a></li>
-              </ul>
-            </li>
-
+            
         <?php } ?>
         <li><a href="profil.php"> <i class="fa fa-user"></i><span>Profil</span></a></li>
         <li><a href="ganti_pass.php"> <i class="fa fa-lock"></i><span>Ganti Password</span></a></li>

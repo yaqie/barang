@@ -92,7 +92,7 @@
             hidden.value = idBarang;
             var jumlah = Number(document.getElementById("jumlahBarang").value);
             var totalHarga = document.getElementById("totalHarga");
-            var diskon6 = harga - (harga*10/100);
+            var diskon6 = harga - (harga*6/100);
             var diskon10 = harga - (harga*10/100)
 
             if(jenis == "umum"){
@@ -100,7 +100,7 @@
                 document.getElementById("textHargaJual").innerHTML  = "Harga Jual / unit (Tanpa Diskon)";
                 totalHarga.value = hargaBarang.value * jumlah;
             } else if (jenis == "member"){
-                document.getElementById("textHargaJual").innerHTML  = "Harga Jual / unit (Diskon 10%)";
+                document.getElementById("textHargaJual").innerHTML  = "Harga Jual / unit (Diskon 6%)";
                 hargaBarang.value = diskon6;
                 totalHarga.value = hargaBarang.value * jumlah;
             } 
@@ -143,6 +143,7 @@
     // })
 
     $('#example1').DataTable()
+    $('#example3').DataTable()
     $('#example2').DataTable({
       'paging'      : true,
       'lengthChange': false,

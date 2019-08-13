@@ -1,3 +1,4 @@
+<script>window.onload = function() { window.print(); }</script>
  <?php  
 // die(var_dump($_SESSION));
  include 'header.php';
@@ -30,98 +31,69 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <!-- <h3 class="box-title">Detail Barang</h3> -->
+                    <h3 class="box-title">Detail Barang</h3>
                     &nbsp;
                     &nbsp;
-                    <a class="btn pull-right" href="barang_laku.php"><span class="glyphicon glyphicon-arrow-left"></span>  Kembali</a>
+                    <!-- <a class="btn pull-right" href="barang_laku.php"><span class="glyphicon glyphicon-arrow-left"></span>  Kembali</a> -->
                 </div>
 
             
 
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <?php
-                        $id_brg=mysqli_real_escape_string($conn,$_GET['id']);
+                <?php 
+                  $id=$_SESSION['id'];
+                  $jenis = $_SESSION['jenis'];
 
-                        $det=mysqli_query($conn,"select * from barang_laku where id='$id_brg'")or die(mysql_error());
-                        while($d=mysqli_fetch_array($det)){
-                            ?>					
-                            <form action="update_laku.php" method="post">
-                                <table class="table">
-                                    <tr>
-                                        <td></td>
-                                        <td><input type="hidden" id="hidden" name="id" value="<?php echo $d['id'] ?>"></td>
-                                    </tr>
+                  $barang_lakuuu=mysqli_fetch_array(mysqli_query($conn,"select * from barang_laku where id='$_GET[id]'"));
+                  $fo=mysqli_fetch_array(mysqli_query($conn,"select * from admin where id='$barang_lakuuu[id_karyawan]'"));
+                ?>
+                <h4>Nama Karyawan : <?= $fo['uname'] ?></h4>
+                <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th style="width: 3%">No</th>
+                    <th style="width: 27%">Nama Barang</th>
+                    <th style="width: 20%">Harga</th>
+                    <th style="width: 20%">Jumlah</th>
+                    <!-- <th style="width: 20%">#</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                <?php
+                $id_barang_laku = $_GET['id'];
+                $no = 1;
+                $jumlah = 0;
+                $harga = 0;
+                $jumlah_barang = 0;
+                $cek = mysqli_query($conn , "SELECT * FROM barang_jual WHERE id_barang_laku = '$id_barang_laku' ORDER BY id_barang_jual DESC");
+                while($data_barang = mysqli_fetch_array($cek)){
+                $id_barang = $data_barang['id_barang'];
+                $dataa = mysqli_query($conn , "SELECT * FROM barang WHERE id = '$id_barang'");
+                $d = mysqli_fetch_array($dataa);
+                $jumlah += $data_barang['harga'];
+                $jumlah_barang += $data_barang['jumlah'];
+                $harga += ($d['harga'] - $d['modal']) * $data_barang['jumlah'];
+                ?>
+                  <tr>
+                    <td style="width: 3%"><?= $no++ ?></td>
+                    <td style="width: 27%"><?= $d['nama'] ?></td>
+                    <td style="width: 20%"><?= $data_barang['harga']  ?></td>
+                    <td style="width: 20%"><?= $data_barang['jumlah'] ?></td>
+                    <!-- <td style="width: 20%"> <a onclick="if(confirm('Apakah anda yakin ingin menghapus data ini ??')){ location.href='hapuslist_barang.php?id=<?php echo $data_barang['id_barang_jual']; ?>&c=<?= $id_barang_laku; ?>' }" class="btn btn-danger">Hapus</a> </td> -->
+                  </tr>
+                <?php } ?>
+                </tbody>
+                <tr>
+                  <td colspan="2"><b>Total</b></td>
+                  <td><b><?= $jumlah ?></b></td>
+                  <td><b><?= $jumlah_barang ?></b></td>
+                </tr>
+              </table>
 
-                                    <?php 
-
-                                    $tanggal = $d['tanggal'];
-
-                                    function ubahTanggal($tanggal){
-                                         $pisah = explode('-',$tanggal);
-                                         $array = array($pisah[1],$pisah[2],$pisah[0]);
-                                         $satukan = implode('/',$array);
-                                         return $satukan;
-                                    }
-
-                                    $tgl = ubahTanggal($tanggal);
-
-                                     ?>
 
 
-                                    <tr>
-                                        <td style="width: 30%;">Tanggal</td>
-                                        <td style="width: 70%;"><input name="tgl" type="text" class="form-control" id="tgl" autocomplete="off" value="<?= $tgl; ?>"></td>
-                                    </tr>
-                                
-                                      <!-- <tr>
-                                          <td>Jenis Pembeli</td>
-                                          <td>
-                                            <select id="jenisPembeli" onchange="setHarga3();" class="form-control" name="jenis">
 
-                                              <option  value="umum">Umum</option>
-                                              <option value="umum">Umum</option>
-                                              <option value="member" >Member</option>
-                                            </select> 
-
-                                          </td>
-                                      </tr> -->
-                                    <tr>
-                                        <td>Nama</td>
-                                        <td>
-                                            <select class="form-control" name="nama" id="DDhargaBarang" onchange="setHarga3()">
-                                                <?php 
-                                                $brg=mysqli_query($conn,"select * from barang");
-                                                while($b=mysqli_fetch_array($brg)){
-                                                    ?>	
-                                                    <option <?php if($d['nama']==$b['nama']){echo "selected"; } ?> value="<?php echo $b['nama'].'|'.$b["harga"].'|'.$b["id"]; ?>"><?php echo $b['nama'] ?></option>
-                                                    <?php 
-                                                }
-                                                ?>
-                                            </select>
-                                        </td>
-                                    </tr>		
-
-                                    <tr>
-                                        <td><span id="textHargaJual">Harga Jual / unit (Tanpa Diskon)</span></td>
-                                        <td><input type="number" oninput="setHarga3()" id="hargaBarang" class="form-control" name="harga" value="<?php echo $d['harga'] ?>"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jumlah</td>
-                                        <td><input type="number" oninput="setHarga3()" id="jumlahBarang" class="form-control" name="jumlah" value="<?php echo $d['jumlah'] ?>"></td>
-                                    </tr>
-
-                                        <input oninput="setHarga3()" id="totalHarga" name="total" type="hidden" class="form-control" placeholder="Total harga" autocomplete="off" value="<?php echo $d['total_harga'] ?>">
-                               
-                                    <tr>
-                                        <td></td>
-                                        <td><input type="submit" class="btn btn-info" value="Edit Data"></td>
-                                    </tr>
-                                </table>
-                            </form>
-                            <?php 
-                        }
-                        ?>
                 
                 </div>
                 <!-- /.box-body -->

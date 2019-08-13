@@ -98,7 +98,7 @@ function mysql_result($res, $row, $field=0) {
                   + Tambah Barang
                  
                 </button>
-                <a style="margin-bottom:10px" href="lap_barang.php" target="_blank" class="btn btn-default"><span class='glyphicon glyphicon-print'></span>  Cetak</a>&nbsp;
+                <!-- <a style="margin-bottom:10px" href="lap_barang.php" target="_blank" class="btn btn-default"><span class='glyphicon glyphicon-print'></span>  Cetak</a>&nbsp; -->
                 
                 
                 <?php } ?>

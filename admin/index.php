@@ -67,7 +67,7 @@ $a = mysqli_query($conn,"select * from barang_laku");
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-                <?php $x =mysqli_num_rows(mysqli_query($conn, "SELECT * from reseller"));?>
+                <?php $x =mysqli_num_rows(mysqli_query($conn, "SELECT * from member"));?>
               <h3><?= $x;?></h3>
 
               <p>Member</p>

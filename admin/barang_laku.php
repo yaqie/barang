@@ -117,10 +117,10 @@ function mysql_result($res, $row, $field=0) {
                 <tr>
                   <th>No</th>
                   <th>Tanggal</th>
-                  <th>Nama Barang</th>
-                  <th>Harga Terjual /pc</th>
+                  <!-- <th>Nama Barang</th> -->
+                  <!-- <th>Harga Terjual /pc</th> -->
                   <th>Total Harga</th>
-                  <th>Jumlah</th>
+                  <!-- <th>Jumlah</th> -->
                   <th>Laba</th>
                   <?php if ($_SESSION['level'] == 'admin'){ ?>			
                   <th>Opsi</th>
@@ -143,17 +143,17 @@ function mysql_result($res, $row, $field=0) {
                  <tr>
                     <td><?php echo $no++ ?></td>
                     <td><?php echo $b['tanggal'] ?></td>
-                    <td><?php echo $b['nama'] ?></td>
-                    <td>Rp.<?php echo number_format($b['harga']) ?>,-</td>
+                    <!-- <td><?php echo $b['nama'] ?></td> -->
+                    <!-- <td>Rp.<?php echo number_format($b['harga']) ?>,-</td> -->
                     <td>Rp.<?php echo number_format($b['total_harga']) ?>,-</td>
-                    <td><?php echo $b['jumlah'] ?></td>		
+                    <!-- <td><?php echo $b['jumlah'] ?></td>		 -->
                     <td>Rp.<?php echo number_format($b['laba']) ?>,-</td>   
-                    <?php if ($_SESSION['level'] == 'admin'){ ?>	
                     <td>		
-                      <a href="edit_laku.php?id=<?php echo $b['id']; ?>" class="btn btn-warning">Edit</a>
+                      <a href="edit_laku.php?id=<?php echo $b['id']; ?>" class="btn btn-primary">Lihat</a>
+                    <?php if ($_SESSION['level'] == 'admin'){ ?>	
                       <a onclick="if(confirm('Apakah anda yakin ingin menghapus data ini ??')){ location.href='hapus_laku.php?id=<?php echo $b['id']; ?>&jumlah=<?php echo $b['jumlah'] ?>&nama=<?php echo $b['nama']; ?>' }" class="btn btn-danger">Hapus</a>
-                    </td>
                     <?php } ?>
+                    </td>
                 </tr>
                  <?php
                   }
@@ -182,21 +182,21 @@ function mysql_result($res, $row, $field=0) {
             ?>
             <!-- /.box-header -->
             <div class="box-body">
-                  Total Pemasukan :  
+                  <!-- Total Pemasukan :   -->
                   <?php 
-                    if(isset($_GET['tanggal'])){
-                      $tanggal=mysqli_real_escape_string($conn,$_GET['tanggal']);
-                      $x=mysqli_query($conn,"select sum(total_harga) as total from barang_laku where tanggal='$tanggal'");	
-                      $xx=mysqli_fetch_array($x);		
-                      echo "<b> Rp.". number_format($xx['total']).",-</b>";
-                    }else{
-                      $z=mysqli_query($conn,"select sum(total_harga) as total from barang_laku");  
-                      $zz=mysqli_fetch_array($z);   
-                      echo "<b> Rp.". number_format($zz['total']).",-</b>";
-                    }
+                    // if(isset($_GET['tanggal'])){
+                    //   $tanggal=mysqli_real_escape_string($conn,$_GET['tanggal']);
+                    //   $x=mysqli_query($conn,"select sum(total_harga) as total from barang_laku where tanggal='$tanggal'");	
+                    //   $xx=mysqli_fetch_array($x);		
+                    //   echo "<b> Rp.". number_format($xx['total']).",-</b>";
+                    // }else{
+                    //   $z=mysqli_query($conn,"select sum(total_harga) as total from barang_laku");  
+                    //   $zz=mysqli_fetch_array($z);   
+                    //   echo "<b> Rp.". number_format($zz['total']).",-</b>";
+                    // }
 
                     ?>
-                    <br>
+                    <!-- <br> -->
                      Total Laba :  
                   <?php 
                     if(isset($_GET['tanggal'])){
