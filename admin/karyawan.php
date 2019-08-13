@@ -114,6 +114,10 @@ function mysql_result($res, $row, $field=0) {
                         <label>Password</label>
                         <input name="password" type="password" class="form-control" placeholder="Password .." required>
                       </div>
+                      <div class="form-group">
+                        <label>Nomor Handphone</label>
+                        <input name="nohp" type="text" class="form-control" placeholder="Nomor Handphone .." required>
+                      </div>
 
                     </div>
                     <div class="modal-footer">
@@ -136,6 +140,7 @@ function mysql_result($res, $row, $field=0) {
                 <tr>
                   <th style="width: 3%">No</th>
                   <th style="width: 27%">Username</th>
+                  <th style="width: 27%">Nomor Handphone</th>
                     <th style="width: 30%">Opsi</th>
                 </tr>
                 </thead>
@@ -151,8 +156,8 @@ function mysql_result($res, $row, $field=0) {
                  <tr>
                     <td><?= $i;?></td>
                     <td><?= $r['uname'];?></td>
+                    <td><?= $r['nohp'];?></td>
                     <td>
-                        <a href="detail_karyawan.php?id=<?php echo $r['id']; ?>" class="btn btn-info">Detail</a>
                         <?php if ($_SESSION['level'] == 'admin'){ ?>
                         <a href="edit_karyawan.php?id=<?php echo $r['id']; ?>" class="btn btn-warning">Edit</a>
                         <a onclick="if(confirm('Apakah anda yakin ingin menghapus data ini ??')){ location.href='hapus_karyawan.php?id=<?php echo $r['id']; ?>' }" class="btn btn-danger">Hapus</a>

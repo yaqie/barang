@@ -54,6 +54,10 @@ $a = mysqli_query($conn,"select * from barang_laku");
                                         <td><input type="text" class="form-control" name="username" value="<?php echo $d['uname'] ?>"></td>
                                     </tr>
                                     <tr>
+                                        <td>Nomor Handphone</td>
+                                        <td><input type="text" class="form-control" name="nohp" value="<?php echo $d['nohp'] ?>"></td>
+                                    </tr>
+                                    <tr>
                                         <td>Password</td>
                                         <td><input type="password" class="form-control" name="password"></td>
                                     </tr>

@@ -39,6 +39,8 @@ include 'config.php';
   <link rel="stylesheet" href="../assets/bower_components/select2/dist/css/select2.min.css">
     <!-- DataTables -->
   <link rel="stylesheet" href="../assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  
+  <link rel="stylesheet" href="../assets/bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -233,6 +235,7 @@ include 'config.php';
           <li><a href="barang_laku.php"> <i class="fa fa-book"></i><span>Entry Penjualan</span></a></li>
           <li><a href="member.php"> <i class="fa fa-users"></i><span>Member</span></a></li>
         <?php } ?>
+          <li><a href="laporan.php"> <i class="fa fa-print"></i><span>Laporan</span></a></li>
         <?php if ($_SESSION['level'] == 'admin'){ ?>
           <li><a href="karyawan.php"> <i class="fa fa-users"></i><span>Karyawan</span></a></li>
             

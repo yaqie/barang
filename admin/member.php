@@ -136,6 +136,7 @@ include 'header.php';
                 <tr>
                   <th style="width: 3%">No</th>
                   <th style="width: 27%">Nama Member</th>
+                  <th style="width: 27%">Nomer Hanphone</th>
                     <th style="width: 30%">Opsi</th>
                 </tr>
                 </thead>
@@ -151,8 +152,8 @@ include 'header.php';
                  <tr>
                     <td><?= $i;?></td>
                     <td><?= $r['nama_reseller'];?></td>
+                    <td><?= $r['no_hp'];?></td>
                     <td>
-                        <a href="detail_member.php?id=<?php echo $r['id_reseller']; ?>" class="btn btn-info">Detail</a>
                         <?php if ($_SESSION['level'] == 'admin'){ ?>
                         <a href="edit_member.php?id=<?php echo $r['id_reseller']; ?>" class="btn btn-warning">Edit</a>
                         <a onclick="if(confirm('Apakah anda yakin ingin menghapus data ini ??')){ location.href='hapus_member.php?id_reseller=<?php echo $r['id_reseller']; ?>' }" class="btn btn-danger">Hapus</a>
